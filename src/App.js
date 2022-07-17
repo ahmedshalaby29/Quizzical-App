@@ -12,19 +12,23 @@ function App() {
 
   async function getQuestions() {
     try {
-      const respone = await axios.get(
-        "https://opentdb.com/api.php?amount=5&category=14&difficulty=medium&type=multiple"
+      const response = await axios.get(
+        "https://opentdb.com/api.php?amount=5&category=14&difficulty=medium&type=multiple&encode=base64"
       );
-      console.log(respone);
-      const questionsRawData = respone.data.results;
+      const questionsRawData = response.data.results;
+            console.log(response);
+       
       const questionsData = questionsRawData.map((data) => {
+        const incorrect_answers  = [];
+        data.incorrect_answers.forEach(element => {
+          incorrect_answers.push(atob(element))
+        });
         return {
-          question: data.question,
-          correct_answer: data.correct_answer,
-          incorrect_answers: data.incorrect_answers,
+          question: atob(data.question),
+          correct_answer: atob(data.correct_answer),
+          incorrect_answers: incorrect_answers,
         };
       });
-      console.log(questionsData);
       setQuestions(questionsData);
     } catch (error) {
       console.log(error);
@@ -52,12 +56,20 @@ function App() {
       />
     );
   });
+
+  function checkAnswers() {
+    
+  }
+
   return (
     <div className="App">
       <img className="blob-img-1" src={blob1} />
       {!quizStarted && <StartQuiz handleStartQuiz={startQuiz} />}
 
-      {quizStarted && <React.Fragment>{questionElements}</React.Fragment>}
+      {quizStarted && <React.Fragment>
+        {questionElements}
+        <button>Check answers</button>
+      </React.Fragment>}
       <img className="blob-img-2" src={blob2} />
     </div>
   );
