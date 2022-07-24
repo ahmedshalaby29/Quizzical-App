@@ -13,6 +13,7 @@
   margin-left: auto;
   margin-bottom: auto;
 }
+
 .startquiz-container {
   display: flex;
   flex-direction: column;
@@ -55,4 +56,111 @@
   transition-duration: 0.5s;
 
   background: #283652;
+}
+
+.questions-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.question-container {
+  max-width: 50rem;
+}
+.question-title {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  margin-top: 0px;
+  margin-bottom: 0.8rem;
+  color: #293264;
+}
+.question-line {
+  color: #dbdef0;
+}
+.answers-container {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+.answer-container {
+  display: flex;
+}
+.radio-input {
+  display: none;
+}
+.radioLabel {
+  background-color: transparent;
+  color: #293264;
+  display: inline-block;
+  margin: 0px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  box-sizing: border-box;
+  border: 0.794239px solid #4d5b9e;
+  border-radius: 7.94239px;
+  line-height: 1;
+  text-align: center;
+  padding: 8px 16px;
+  margin-right: -1px;
+  transition: all 0.1s ease-in-out;
+}
+
+.radioLabel:hover {
+  cursor: pointer;
+}
+
+.answer-container input:checked + label {
+  background-color: #d6dbf5;
+  border: none;
+  box-shadow: none;
+}
+
+.correctAnswer {
+  background-color: #94d7a2 !important;
+  border: none !important;
+}
+
+.wrongAnswer {
+  background-color: #f8bcbc !important;
+  border: none !important;
+  color: #293264 !important;
+}
+.unselectedAnswer {
+  color: #293264 !important;
+  border: 0.794239px solid #4d5b9e !important;
+  opacity: 50% !important;
+}
+.checkAnswers-btn {
+  width: 200px;
+  height: 60px;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  background: #4d5b9e;
+  border-radius: 10px;
+}
+.checkAnswers-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.score-display-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.score-display {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #293264;
+  margin-right: 30px;
+}
+.play-again-btn {
+  width: 150px;
+  height: 50px;
 }
