@@ -10,7 +10,8 @@ function App() {
   const [quizStarted, setQuizStarted] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [correctAnswers, setCorrectAnswers] = useState(0);
-
+  const [selectedCategory, setSelectedCategory] = useState("9");
+  const [selectedDifficulty, setSelectedDifficulty] = useState("easy");
   const [questionElements, setQuestionElements] = useState([]);
   const [questions, setQuestions] = useState([]);
 
@@ -19,11 +20,10 @@ function App() {
   async function getQuestions() {
     try {
       const response = await axios.get(
-        "https://opentdb.com/api.php?amount=5&category=14&difficulty=medium&type=multiple&encode=base64"
+        `https://opentdb.com/api.php?amount=5&category=${selectedCategory}&difficulty=${selectedDifficulty.toLowerCase()}&type=multiple&encode=base64`
       );
-      const questionsRawData = response.data.results;
-      console.log(response);
 
+      const questionsRawData = response.data.results;
       const questionsData = questionsRawData.map((data) => {
         const incorrect_answers = [];
         data.incorrect_answers.forEach((element) => {
@@ -108,7 +108,13 @@ function App() {
   return (
     <div className="App">
       <img className="blob-img-1" src={blob1} />
-      {!quizStarted && <StartQuiz handleStartQuiz={startQuiz} />}
+      {!quizStarted && (
+        <StartQuiz
+          handleStartQuiz={startQuiz}
+          setSelectedCategory={setSelectedCategory}
+          setSelectedDifficulty={setSelectedDifficulty}
+        />
+      )}
 
       {quizStarted && (
         <div className="questions-container">
