@@ -50,10 +50,10 @@ function App() {
     arrClone.splice(index, 0, val);
     return arrClone;
   };
-  function startQuiz() {
+  async function startQuiz() {
+    await getQuestions();
     setQuestionElements([]);
     setAnswers([]);
-    getQuestions();
 
     setQuizStarted(true);
     setShowResults(false);
